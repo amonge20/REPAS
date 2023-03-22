@@ -6,16 +6,61 @@
         <script>
             /*Exercici 1: Una funció que donat un array retorni un nou 
             array amb l'arrel quadrada de cadascun dels valors.*/
-            [2,6,7,5,1].map(e => Math.pow(e*2))
+            function squareRootArray(array) {
+                const resultArray = array
+                    .filter((num) => num >= 0) // eliminem els valors negatius
+                    .map((num) => Math.sqrt(num)); // calculem les arrels quadrades dels valors positius restants
+                return resultArray;
+                }
+
+            const array = [4, -9, 16, -25, 36];
+            console.log(squareRootArray(array)); // retorna [2, 4, 6]
+
             //Exercici 2: Una funció que retorni la suma dels elements positius d'un array.
-      
+            function sumPositiveElements(array) {
+                const positiveArray = array.filter((num) => num >= 0); // eliminem els valors negatius
+                const sum = positiveArray.reduce((accumulator, currentValue) => accumulator + currentValue, 0); // sumem els valors positius restants
+                return sum;
+            }
+
+            const array = [4, -9, 16, -25, 36];
+            console.log(sumPositiveElements(array)); // retorna 56
+
             //Exercici 3: Una funció que calculi el factorial d'un número. (proveu què fa Array.from(Array(10).keys())
-            
+            function factorial(n) {
+                if (n === 0) {
+                    return 1;
+                }
+                return Array.from(Array(n).keys()).map(x => x + 1).reduce((a, b) => a * b);
+                }
+
+            console.log(factorial(5)); // Output: 120
+
             //Exercici 4: Una funció que et retorni la mida de cada array en un array d'arrays
-            [[5,6,8],[9,4,6]].map(e => e.length);
+            function arraySizes(arrays) {
+                return arrays.map(array => array.length);
+            }
+
+            const arrays = [[1, 2, 3], [4, 5], [6, 7, 8, 9]];
+            console.log(arraySizes(arrays)); // Output: [3, 2, 4]
+
             /*Exercici 5: Donat el següent array, volem que ens retorni els noms 
             dels treballadors del deparatament IT que cobren menys de 60000*/
-            
+            const employees = [
+            { name: 'Anna', department: 'IT', salary: 55000 },
+            { name: 'John', department: 'Sales', salary: 65000 },
+            { name: 'Bob', department: 'IT', salary: 45000 },
+            { name: 'Mike', department: 'IT', salary: 60000 },
+            { name: 'Lisa', department: 'HR', salary: 70000 }
+        ];
+
+        function getITEmployeesUnder60k(employees) {
+        return employees
+            .filter(employee => employee.department === 'IT' && employee.salary < 60000)
+            .map(employee => employee.name);
+        }
+
+        console.log(getITEmployeesUnder60k(employees)); // Output: ['Anna', 'Bob']
         </script>
     </body>
 </html>
